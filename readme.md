@@ -1,10 +1,12 @@
-# Test combining [yjs](https://github.com/yjs/yjs) and PostgreSQL using PLV8 and plv8ify
+# Test combining [yjs](https://github.com/yjs/yjs) and PostgreSQL using [PLV8](https://github.com/plv8/plv8) and [plv8ify](https://github.com/divyenduz/plv8ify)
 
 It impliments the same functions as https://github.com/samwillis/yjs-sqlite-test but for PostgreSQL.
 
 `/dist/pg_yjs.sql` contains the SQL to create the Yjs functions, PLV8 is requeired.
 
-`/test.sql` from a few quick test to show it working.
+This could form the bases of a [pg_tle (Trusted Language Extensions)](https://github.com/aws/pg_tle).
+
+`/test.sql` is a few quick test to show it working.
 
 ## A few things you can do
 
@@ -67,3 +69,5 @@ SELECT doc FROM docs WHERE aMapKey = 'a value';
 
 - `y_get_xml_fragment_json(bytes, key)`
   As above but for a top level xml fragment.
+
+- From within a PLV8 function you can use the `yjs` object to access the whole yjs implimentation.
