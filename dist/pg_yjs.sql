@@ -1,49 +1,49 @@
-DROP FUNCTION IF EXISTS y_apply_update(savedDoc bytea,update bytea);
-CREATE OR REPLACE FUNCTION y_apply_update(savedDoc bytea,update bytea) RETURNS bytea AS $plv8ify$
+DROP FUNCTION IF EXISTS y_apply_update(bytes bytea,update bytea);
+CREATE OR REPLACE FUNCTION y_apply_update(bytes bytea,update bytea) RETURNS bytea AS $plv8ify$
 if (globalThis.y === undefined) plv8.execute('SELECT y_init();');
-return y.apply_update(savedDoc,update)
+return y.apply_update(bytes,update)
 
 $plv8ify$ LANGUAGE plv8 IMMUTABLE STRICT;
-DROP FUNCTION IF EXISTS y_apply_update_gc(savedDoc bytea,update bytea);
-CREATE OR REPLACE FUNCTION y_apply_update_gc(savedDoc bytea,update bytea) RETURNS bytea AS $plv8ify$
+DROP FUNCTION IF EXISTS y_apply_update_gc(bytes bytea,update bytea);
+CREATE OR REPLACE FUNCTION y_apply_update_gc(bytes bytea,update bytea) RETURNS bytea AS $plv8ify$
 if (globalThis.y === undefined) plv8.execute('SELECT y_init();');
-return y.apply_update_gc(savedDoc,update)
+return y.apply_update_gc(bytes,update)
 
 $plv8ify$ LANGUAGE plv8 IMMUTABLE STRICT;
-DROP FUNCTION IF EXISTS y_diff_update(savedDoc bytea,stateVector bytea);
-CREATE OR REPLACE FUNCTION y_diff_update(savedDoc bytea,stateVector bytea) RETURNS bytea AS $plv8ify$
+DROP FUNCTION IF EXISTS y_diff_update(bytes bytea,stateVector bytea);
+CREATE OR REPLACE FUNCTION y_diff_update(bytes bytea,stateVector bytea) RETURNS bytea AS $plv8ify$
 if (globalThis.y === undefined) plv8.execute('SELECT y_init();');
-return y.diff_update(savedDoc,stateVector)
+return y.diff_update(bytes,stateVector)
 
 $plv8ify$ LANGUAGE plv8 IMMUTABLE STRICT;
-DROP FUNCTION IF EXISTS y_encode_state_vector(savedDoc bytea);
-CREATE OR REPLACE FUNCTION y_encode_state_vector(savedDoc bytea) RETURNS bytea AS $plv8ify$
+DROP FUNCTION IF EXISTS y_encode_state_vector(bytes bytea);
+CREATE OR REPLACE FUNCTION y_encode_state_vector(bytes bytea) RETURNS bytea AS $plv8ify$
 if (globalThis.y === undefined) plv8.execute('SELECT y_init();');
-return y.encode_state_vector(savedDoc)
+return y.encode_state_vector(bytes)
 
 $plv8ify$ LANGUAGE plv8 IMMUTABLE STRICT;
-DROP FUNCTION IF EXISTS y_extract_xml_fragment_text(savedDoc bytea,key text);
-CREATE OR REPLACE FUNCTION y_extract_xml_fragment_text(savedDoc bytea,key text) RETURNS text AS $plv8ify$
+DROP FUNCTION IF EXISTS y_extract_xml_fragment_text(bytes bytea,key text);
+CREATE OR REPLACE FUNCTION y_extract_xml_fragment_text(bytes bytea,key text) RETURNS text AS $plv8ify$
 if (globalThis.y === undefined) plv8.execute('SELECT y_init();');
-return y.extract_xml_fragment_text(savedDoc,key)
+return y.extract_xml_fragment_text(bytes,key)
 
 $plv8ify$ LANGUAGE plv8 IMMUTABLE STRICT;
-DROP FUNCTION IF EXISTS y_get_array_json(savedDoc bytea,key text);
-CREATE OR REPLACE FUNCTION y_get_array_json(savedDoc bytea,key text) RETURNS JSONB AS $plv8ify$
+DROP FUNCTION IF EXISTS y_get_array_json(bytes bytea,key text);
+CREATE OR REPLACE FUNCTION y_get_array_json(bytes bytea,key text) RETURNS JSONB AS $plv8ify$
 if (globalThis.y === undefined) plv8.execute('SELECT y_init();');
-return y.get_array_json(savedDoc,key)
+return y.get_array_json(bytes,key)
 
 $plv8ify$ LANGUAGE plv8 IMMUTABLE STRICT;
-DROP FUNCTION IF EXISTS y_get_map_json(savedDoc bytea,key text);
-CREATE OR REPLACE FUNCTION y_get_map_json(savedDoc bytea,key text) RETURNS JSONB AS $plv8ify$
+DROP FUNCTION IF EXISTS y_get_map_json(bytes bytea,key text);
+CREATE OR REPLACE FUNCTION y_get_map_json(bytes bytea,key text) RETURNS JSONB AS $plv8ify$
 if (globalThis.y === undefined) plv8.execute('SELECT y_init();');
-return y.get_map_json(savedDoc,key)
+return y.get_map_json(bytes,key)
 
 $plv8ify$ LANGUAGE plv8 IMMUTABLE STRICT;
-DROP FUNCTION IF EXISTS y_get_xml_fragment_json(savedDoc bytea,key text);
-CREATE OR REPLACE FUNCTION y_get_xml_fragment_json(savedDoc bytea,key text) RETURNS JSONB AS $plv8ify$
+DROP FUNCTION IF EXISTS y_get_xml_fragment_json(bytes bytea,key text);
+CREATE OR REPLACE FUNCTION y_get_xml_fragment_json(bytes bytea,key text) RETURNS JSONB AS $plv8ify$
 if (globalThis.y === undefined) plv8.execute('SELECT y_init();');
-return y.get_xml_fragment_json(savedDoc,key)
+return y.get_xml_fragment_json(bytes,key)
 
 $plv8ify$ LANGUAGE plv8 IMMUTABLE STRICT;
 DROP FUNCTION IF EXISTS y_init();
@@ -119,6 +119,101 @@ globalThis.y = (() => {
     randomUUID: null
   };
 
+  // node_modules/yjs/dist/yjs.mjs
+  var yjs_exports = {};
+  __export(yjs_exports, {
+    AbsolutePosition: () => AbsolutePosition,
+    AbstractConnector: () => AbstractConnector,
+    AbstractStruct: () => AbstractStruct,
+    AbstractType: () => AbstractType,
+    Array: () => YArray,
+    ContentAny: () => ContentAny,
+    ContentBinary: () => ContentBinary,
+    ContentDeleted: () => ContentDeleted,
+    ContentEmbed: () => ContentEmbed,
+    ContentFormat: () => ContentFormat,
+    ContentJSON: () => ContentJSON,
+    ContentString: () => ContentString,
+    ContentType: () => ContentType,
+    Doc: () => Doc,
+    GC: () => GC,
+    ID: () => ID,
+    Item: () => Item,
+    Map: () => YMap,
+    PermanentUserData: () => PermanentUserData,
+    RelativePosition: () => RelativePosition,
+    Snapshot: () => Snapshot,
+    Text: () => YText,
+    Transaction: () => Transaction,
+    UndoManager: () => UndoManager,
+    UpdateEncoderV1: () => UpdateEncoderV1,
+    XmlElement: () => YXmlElement,
+    XmlFragment: () => YXmlFragment,
+    XmlHook: () => YXmlHook,
+    XmlText: () => YXmlText,
+    YArrayEvent: () => YArrayEvent,
+    YEvent: () => YEvent,
+    YMapEvent: () => YMapEvent,
+    YTextEvent: () => YTextEvent,
+    YXmlEvent: () => YXmlEvent,
+    applyUpdate: () => applyUpdate,
+    applyUpdateV2: () => applyUpdateV2,
+    cleanupYTextFormatting: () => cleanupYTextFormatting,
+    compareIDs: () => compareIDs,
+    compareRelativePositions: () => compareRelativePositions,
+    convertUpdateFormatV1ToV2: () => convertUpdateFormatV1ToV2,
+    convertUpdateFormatV2ToV1: () => convertUpdateFormatV2ToV1,
+    createAbsolutePositionFromRelativePosition: () => createAbsolutePositionFromRelativePosition,
+    createDeleteSet: () => createDeleteSet,
+    createDeleteSetFromStructStore: () => createDeleteSetFromStructStore,
+    createDocFromSnapshot: () => createDocFromSnapshot,
+    createID: () => createID,
+    createRelativePositionFromJSON: () => createRelativePositionFromJSON,
+    createRelativePositionFromTypeIndex: () => createRelativePositionFromTypeIndex,
+    createSnapshot: () => createSnapshot,
+    decodeRelativePosition: () => decodeRelativePosition,
+    decodeSnapshot: () => decodeSnapshot,
+    decodeSnapshotV2: () => decodeSnapshotV2,
+    decodeStateVector: () => decodeStateVector,
+    decodeUpdate: () => decodeUpdate,
+    decodeUpdateV2: () => decodeUpdateV2,
+    diffUpdate: () => diffUpdate,
+    diffUpdateV2: () => diffUpdateV2,
+    emptySnapshot: () => emptySnapshot,
+    encodeRelativePosition: () => encodeRelativePosition,
+    encodeSnapshot: () => encodeSnapshot,
+    encodeSnapshotV2: () => encodeSnapshotV2,
+    encodeStateAsUpdate: () => encodeStateAsUpdate,
+    encodeStateAsUpdateV2: () => encodeStateAsUpdateV2,
+    encodeStateVector: () => encodeStateVector,
+    encodeStateVectorFromUpdate: () => encodeStateVectorFromUpdate,
+    encodeStateVectorFromUpdateV2: () => encodeStateVectorFromUpdateV2,
+    equalSnapshots: () => equalSnapshots,
+    findIndexSS: () => findIndexSS,
+    findRootTypeKey: () => findRootTypeKey,
+    getItem: () => getItem,
+    getState: () => getState,
+    getTypeChildren: () => getTypeChildren,
+    isDeleted: () => isDeleted,
+    isParentOf: () => isParentOf,
+    iterateDeletedStructs: () => iterateDeletedStructs,
+    logType: () => logType,
+    logUpdate: () => logUpdate,
+    logUpdateV2: () => logUpdateV2,
+    mergeUpdates: () => mergeUpdates,
+    mergeUpdatesV2: () => mergeUpdatesV2,
+    parseUpdateMeta: () => parseUpdateMeta,
+    parseUpdateMetaV2: () => parseUpdateMetaV2,
+    readUpdate: () => readUpdate,
+    readUpdateV2: () => readUpdateV2,
+    relativePositionToJSON: () => relativePositionToJSON,
+    snapshot: () => snapshot,
+    transact: () => transact,
+    tryGc: () => tryGc,
+    typeListToArraySnapshot: () => typeListToArraySnapshot,
+    typeMapGetSnapshot: () => typeMapGetSnapshot
+  });
+
   // node_modules/lib0/map.js
   var create = () => /* @__PURE__ */ new Map();
   var copy = (m) => {
@@ -162,6 +257,14 @@ globalThis.y = (() => {
     }
   };
   var from = Array.from;
+  var some = (arr, f) => {
+    for (let i = 0; i < arr.length; i++) {
+      if (f(arr[i], i, arr)) {
+        return true;
+      }
+    }
+    return false;
+  };
   var isArray = Array.isArray;
 
   // node_modules/lib0/observable.js
@@ -1014,6 +1117,13 @@ globalThis.y = (() => {
   });
 
   // node_modules/yjs/dist/yjs.mjs
+  var AbstractConnector = class extends Observable {
+    constructor(ydoc, awareness) {
+      super();
+      this.doc = ydoc;
+      this.awareness = awareness;
+    }
+  };
   var DeleteItem = class {
     constructor(clock, len) {
       this.clock = clock;
@@ -1827,6 +1937,7 @@ globalThis.y = (() => {
       applyUpdateV2(transaction.doc, update);
     }
   }, transactionOrigin, false);
+  var readUpdate = (decoder, ydoc, transactionOrigin) => readUpdateV2(decoder, ydoc, transactionOrigin, new UpdateDecoderV1(decoder));
   var applyUpdateV2 = (ydoc, update, transactionOrigin, YDecoder = UpdateDecoderV2) => {
     const decoder = createDecoder(update);
     readUpdateV2(decoder, ydoc, transactionOrigin, new YDecoder(decoder));
@@ -1867,6 +1978,24 @@ globalThis.y = (() => {
     return ss;
   };
   var decodeStateVector = (decodedState) => readStateVector(new DSDecoderV1(createDecoder(decodedState)));
+  var writeStateVector = (encoder, sv) => {
+    writeVarUint(encoder.restEncoder, sv.size);
+    from(sv.entries()).sort((a, b) => b[0] - a[0]).forEach(([client, clock]) => {
+      writeVarUint(encoder.restEncoder, client);
+      writeVarUint(encoder.restEncoder, clock);
+    });
+    return encoder;
+  };
+  var writeDocumentStateVector = (encoder, doc2) => writeStateVector(encoder, getStateVector(doc2.store));
+  var encodeStateVectorV2 = (doc2, encoder = new DSEncoderV2()) => {
+    if (doc2 instanceof Map) {
+      writeStateVector(encoder, doc2);
+    } else {
+      writeDocumentStateVector(encoder, doc2);
+    }
+    return encoder.toUint8Array();
+  };
+  var encodeStateVector = (doc2) => encodeStateVectorV2(doc2, new DSEncoderV1());
   var EventHandler = class {
     constructor() {
       this.l = [];
@@ -1891,6 +2020,11 @@ globalThis.y = (() => {
   };
   var compareIDs = (a, b) => a === b || a !== null && b !== null && a.client === b.client && a.clock === b.clock;
   var createID = (client, clock) => new ID(client, clock);
+  var writeID = (encoder, id) => {
+    writeVarUint(encoder, id.client);
+    writeVarUint(encoder, id.clock);
+  };
+  var readID = (decoder) => createID(readVarUint(decoder), readVarUint(decoder));
   var findRootTypeKey = (type) => {
     for (const [key, value] of type.doc.share.entries()) {
       if (value === type) {
@@ -1899,28 +2033,362 @@ globalThis.y = (() => {
     }
     throw unexpectedCase();
   };
+  var isParentOf = (parent, child) => {
+    while (child !== null) {
+      if (child.parent === parent) {
+        return true;
+      }
+      child = child.parent._item;
+    }
+    return false;
+  };
+  var logType = (type) => {
+    const res = [];
+    let n = type._start;
+    while (n) {
+      res.push(n);
+      n = n.right;
+    }
+    console.log("Children: ", res);
+    console.log("Children content: ", res.filter((m) => !m.deleted).map((m) => m.content));
+  };
+  var PermanentUserData = class {
+    constructor(doc2, storeType = doc2.getMap("users")) {
+      const dss = /* @__PURE__ */ new Map();
+      this.yusers = storeType;
+      this.doc = doc2;
+      this.clients = /* @__PURE__ */ new Map();
+      this.dss = dss;
+      const initUser = (user, userDescription) => {
+        const ds = user.get("ds");
+        const ids = user.get("ids");
+        const addClientId = (clientid) => this.clients.set(clientid, userDescription);
+        ds.observe((event) => {
+          event.changes.added.forEach((item) => {
+            item.content.getContent().forEach((encodedDs) => {
+              if (encodedDs instanceof Uint8Array) {
+                this.dss.set(userDescription, mergeDeleteSets([this.dss.get(userDescription) || createDeleteSet(), readDeleteSet(new DSDecoderV1(createDecoder(encodedDs)))]));
+              }
+            });
+          });
+        });
+        this.dss.set(userDescription, mergeDeleteSets(ds.map((encodedDs) => readDeleteSet(new DSDecoderV1(createDecoder(encodedDs))))));
+        ids.observe((event) => event.changes.added.forEach((item) => item.content.getContent().forEach(addClientId)));
+        ids.forEach(addClientId);
+      };
+      storeType.observe((event) => {
+        event.keysChanged.forEach((userDescription) => initUser(storeType.get(userDescription), userDescription));
+      });
+      storeType.forEach(initUser);
+    }
+    setUserMapping(doc2, clientid, userDescription, { filter = () => true } = {}) {
+      const users = this.yusers;
+      let user = users.get(userDescription);
+      if (!user) {
+        user = new YMap();
+        user.set("ids", new YArray());
+        user.set("ds", new YArray());
+        users.set(userDescription, user);
+      }
+      user.get("ids").push([clientid]);
+      users.observe((_event) => {
+        setTimeout(() => {
+          const userOverwrite = users.get(userDescription);
+          if (userOverwrite !== user) {
+            user = userOverwrite;
+            this.clients.forEach((_userDescription, clientid2) => {
+              if (userDescription === _userDescription) {
+                user.get("ids").push([clientid2]);
+              }
+            });
+            const encoder = new DSEncoderV1();
+            const ds = this.dss.get(userDescription);
+            if (ds) {
+              writeDeleteSet(encoder, ds);
+              user.get("ds").push([encoder.toUint8Array()]);
+            }
+          }
+        }, 0);
+      });
+      doc2.on("afterTransaction", (transaction) => {
+        setTimeout(() => {
+          const yds = user.get("ds");
+          const ds = transaction.deleteSet;
+          if (transaction.local && ds.clients.size > 0 && filter(transaction, ds)) {
+            const encoder = new DSEncoderV1();
+            writeDeleteSet(encoder, ds);
+            yds.push([encoder.toUint8Array()]);
+          }
+        });
+      });
+    }
+    getUserByClientId(clientid) {
+      return this.clients.get(clientid) || null;
+    }
+    getUserByDeletedId(id) {
+      for (const [userDescription, ds] of this.dss.entries()) {
+        if (isDeleted(ds, id)) {
+          return userDescription;
+        }
+      }
+      return null;
+    }
+  };
+  var RelativePosition = class {
+    constructor(type, tname, item, assoc = 0) {
+      this.type = type;
+      this.tname = tname;
+      this.item = item;
+      this.assoc = assoc;
+    }
+  };
+  var relativePositionToJSON = (rpos) => {
+    const json = {};
+    if (rpos.type) {
+      json.type = rpos.type;
+    }
+    if (rpos.tname) {
+      json.tname = rpos.tname;
+    }
+    if (rpos.item) {
+      json.item = rpos.item;
+    }
+    if (rpos.assoc != null) {
+      json.assoc = rpos.assoc;
+    }
+    return json;
+  };
+  var createRelativePositionFromJSON = (json) => new RelativePosition(json.type == null ? null : createID(json.type.client, json.type.clock), json.tname || null, json.item == null ? null : createID(json.item.client, json.item.clock), json.assoc == null ? 0 : json.assoc);
+  var AbsolutePosition = class {
+    constructor(type, index, assoc = 0) {
+      this.type = type;
+      this.index = index;
+      this.assoc = assoc;
+    }
+  };
+  var createAbsolutePosition = (type, index, assoc = 0) => new AbsolutePosition(type, index, assoc);
+  var createRelativePosition = (type, item, assoc) => {
+    let typeid = null;
+    let tname = null;
+    if (type._item === null) {
+      tname = findRootTypeKey(type);
+    } else {
+      typeid = createID(type._item.id.client, type._item.id.clock);
+    }
+    return new RelativePosition(typeid, tname, item, assoc);
+  };
+  var createRelativePositionFromTypeIndex = (type, index, assoc = 0) => {
+    let t = type._start;
+    if (assoc < 0) {
+      if (index === 0) {
+        return createRelativePosition(type, null, assoc);
+      }
+      index--;
+    }
+    while (t !== null) {
+      if (!t.deleted && t.countable) {
+        if (t.length > index) {
+          return createRelativePosition(type, createID(t.id.client, t.id.clock + index), assoc);
+        }
+        index -= t.length;
+      }
+      if (t.right === null && assoc < 0) {
+        return createRelativePosition(type, t.lastId, assoc);
+      }
+      t = t.right;
+    }
+    return createRelativePosition(type, null, assoc);
+  };
+  var writeRelativePosition = (encoder, rpos) => {
+    const { type, tname, item, assoc } = rpos;
+    if (item !== null) {
+      writeVarUint(encoder, 0);
+      writeID(encoder, item);
+    } else if (tname !== null) {
+      writeUint8(encoder, 1);
+      writeVarString(encoder, tname);
+    } else if (type !== null) {
+      writeUint8(encoder, 2);
+      writeID(encoder, type);
+    } else {
+      throw unexpectedCase();
+    }
+    writeVarInt(encoder, assoc);
+    return encoder;
+  };
+  var encodeRelativePosition = (rpos) => {
+    const encoder = createEncoder();
+    writeRelativePosition(encoder, rpos);
+    return toUint8Array(encoder);
+  };
+  var readRelativePosition = (decoder) => {
+    let type = null;
+    let tname = null;
+    let itemID = null;
+    switch (readVarUint(decoder)) {
+      case 0:
+        itemID = readID(decoder);
+        break;
+      case 1:
+        tname = readVarString(decoder);
+        break;
+      case 2: {
+        type = readID(decoder);
+      }
+    }
+    const assoc = hasContent(decoder) ? readVarInt(decoder) : 0;
+    return new RelativePosition(type, tname, itemID, assoc);
+  };
+  var decodeRelativePosition = (uint8Array) => readRelativePosition(createDecoder(uint8Array));
+  var createAbsolutePositionFromRelativePosition = (rpos, doc2) => {
+    const store = doc2.store;
+    const rightID = rpos.item;
+    const typeID = rpos.type;
+    const tname = rpos.tname;
+    const assoc = rpos.assoc;
+    let type = null;
+    let index = 0;
+    if (rightID !== null) {
+      if (getState(store, rightID.client) <= rightID.clock) {
+        return null;
+      }
+      const res = followRedone(store, rightID);
+      const right = res.item;
+      if (!(right instanceof Item)) {
+        return null;
+      }
+      type = right.parent;
+      if (type._item === null || !type._item.deleted) {
+        index = right.deleted || !right.countable ? 0 : res.diff + (assoc >= 0 ? 0 : 1);
+        let n = right.left;
+        while (n !== null) {
+          if (!n.deleted && n.countable) {
+            index += n.length;
+          }
+          n = n.left;
+        }
+      }
+    } else {
+      if (tname !== null) {
+        type = doc2.get(tname);
+      } else if (typeID !== null) {
+        if (getState(store, typeID.client) <= typeID.clock) {
+          return null;
+        }
+        const { item } = followRedone(store, typeID);
+        if (item instanceof Item && item.content instanceof ContentType) {
+          type = item.content.type;
+        } else {
+          return null;
+        }
+      } else {
+        throw unexpectedCase();
+      }
+      if (assoc >= 0) {
+        index = type._length;
+      } else {
+        index = 0;
+      }
+    }
+    return createAbsolutePosition(type, index, rpos.assoc);
+  };
+  var compareRelativePositions = (a, b) => a === b || a !== null && b !== null && a.tname === b.tname && compareIDs(a.item, b.item) && compareIDs(a.type, b.type) && a.assoc === b.assoc;
   var Snapshot = class {
     constructor(ds, sv) {
       this.ds = ds;
       this.sv = sv;
     }
   };
+  var equalSnapshots = (snap1, snap2) => {
+    const ds1 = snap1.ds.clients;
+    const ds2 = snap2.ds.clients;
+    const sv1 = snap1.sv;
+    const sv2 = snap2.sv;
+    if (sv1.size !== sv2.size || ds1.size !== ds2.size) {
+      return false;
+    }
+    for (const [key, value] of sv1.entries()) {
+      if (sv2.get(key) !== value) {
+        return false;
+      }
+    }
+    for (const [client, dsitems1] of ds1.entries()) {
+      const dsitems2 = ds2.get(client) || [];
+      if (dsitems1.length !== dsitems2.length) {
+        return false;
+      }
+      for (let i = 0; i < dsitems1.length; i++) {
+        const dsitem1 = dsitems1[i];
+        const dsitem2 = dsitems2[i];
+        if (dsitem1.clock !== dsitem2.clock || dsitem1.len !== dsitem2.len) {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+  var encodeSnapshotV2 = (snapshot2, encoder = new DSEncoderV2()) => {
+    writeDeleteSet(encoder, snapshot2.ds);
+    writeStateVector(encoder, snapshot2.sv);
+    return encoder.toUint8Array();
+  };
+  var encodeSnapshot = (snapshot2) => encodeSnapshotV2(snapshot2, new DSEncoderV1());
+  var decodeSnapshotV2 = (buf, decoder = new DSDecoderV2(createDecoder(buf))) => {
+    return new Snapshot(readDeleteSet(decoder), readStateVector(decoder));
+  };
+  var decodeSnapshot = (buf) => decodeSnapshotV2(buf, new DSDecoderV1(createDecoder(buf)));
   var createSnapshot = (ds, sm) => new Snapshot(ds, sm);
   var emptySnapshot = createSnapshot(createDeleteSet(), /* @__PURE__ */ new Map());
-  var isVisible = (item, snapshot) => snapshot === void 0 ? !item.deleted : snapshot.sv.has(item.id.client) && (snapshot.sv.get(item.id.client) || 0) > item.id.clock && !isDeleted(snapshot.ds, item.id);
-  var splitSnapshotAffectedStructs = (transaction, snapshot) => {
+  var snapshot = (doc2) => createSnapshot(createDeleteSetFromStructStore(doc2.store), getStateVector(doc2.store));
+  var isVisible = (item, snapshot2) => snapshot2 === void 0 ? !item.deleted : snapshot2.sv.has(item.id.client) && (snapshot2.sv.get(item.id.client) || 0) > item.id.clock && !isDeleted(snapshot2.ds, item.id);
+  var splitSnapshotAffectedStructs = (transaction, snapshot2) => {
     const meta = setIfUndefined(transaction.meta, splitSnapshotAffectedStructs, create2);
     const store = transaction.doc.store;
-    if (!meta.has(snapshot)) {
-      snapshot.sv.forEach((clock, client) => {
+    if (!meta.has(snapshot2)) {
+      snapshot2.sv.forEach((clock, client) => {
         if (clock < getState(store, client)) {
           getItemCleanStart(transaction, createID(client, clock));
         }
       });
-      iterateDeletedStructs(transaction, snapshot.ds, (item) => {
+      iterateDeletedStructs(transaction, snapshot2.ds, (item) => {
       });
-      meta.add(snapshot);
+      meta.add(snapshot2);
     }
+  };
+  var createDocFromSnapshot = (originDoc, snapshot2, newDoc = new Doc()) => {
+    if (originDoc.gc) {
+      throw new Error("originDoc must not be garbage collected");
+    }
+    const { sv, ds } = snapshot2;
+    const encoder = new UpdateEncoderV2();
+    originDoc.transact((transaction) => {
+      let size = 0;
+      sv.forEach((clock) => {
+        if (clock > 0) {
+          size++;
+        }
+      });
+      writeVarUint(encoder.restEncoder, size);
+      for (const [client, clock] of sv) {
+        if (clock === 0) {
+          continue;
+        }
+        if (clock < getState(originDoc.store, client)) {
+          getItemCleanStart(transaction, createID(client, clock));
+        }
+        const structs = originDoc.store.clients.get(client) || [];
+        const lastStructIndex = findIndexSS(structs, clock - 1);
+        writeVarUint(encoder.restEncoder, lastStructIndex + 1);
+        encoder.writeClient(client);
+        writeVarUint(encoder.restEncoder, 0);
+        for (let i = 0; i <= lastStructIndex; i++) {
+          structs[i].write(encoder, 0);
+        }
+      }
+      writeDeleteSet(encoder, ds);
+    });
+    applyUpdateV2(newDoc, encoder.toUint8Array(), "snapshot");
+    return newDoc;
   };
   var StructStore = class {
     constructor() {
@@ -2102,6 +2570,10 @@ globalThis.y = (() => {
       }
     });
   };
+  var tryGc = (ds, store, gcFilter) => {
+    tryGcDeleteSet(ds, store, gcFilter);
+    tryMergeDeleteSet(ds, store);
+  };
   var cleanupTransactions = (transactionCleanups, i) => {
     if (i < transactionCleanups.length) {
       const transaction = transactionCleanups[i];
@@ -2226,6 +2698,214 @@ globalThis.y = (() => {
     }
     return result;
   };
+  var StackItem = class {
+    constructor(deletions, insertions) {
+      this.insertions = insertions;
+      this.deletions = deletions;
+      this.meta = /* @__PURE__ */ new Map();
+    }
+  };
+  var clearUndoManagerStackItem = (tr, um, stackItem) => {
+    iterateDeletedStructs(tr, stackItem.deletions, (item) => {
+      if (item instanceof Item && um.scope.some((type) => isParentOf(type, item))) {
+        keepItem(item, false);
+      }
+    });
+  };
+  var popStackItem = (undoManager, stack, eventType) => {
+    let result = null;
+    let _tr = null;
+    const doc2 = undoManager.doc;
+    const scope = undoManager.scope;
+    transact(doc2, (transaction) => {
+      while (stack.length > 0 && result === null) {
+        const store = doc2.store;
+        const stackItem = stack.pop();
+        const itemsToRedo = /* @__PURE__ */ new Set();
+        const itemsToDelete = [];
+        let performedChange = false;
+        iterateDeletedStructs(transaction, stackItem.insertions, (struct) => {
+          if (struct instanceof Item) {
+            if (struct.redone !== null) {
+              let { item, diff } = followRedone(store, struct.id);
+              if (diff > 0) {
+                item = getItemCleanStart(transaction, createID(item.id.client, item.id.clock + diff));
+              }
+              struct = item;
+            }
+            if (!struct.deleted && scope.some((type) => isParentOf(type, struct))) {
+              itemsToDelete.push(struct);
+            }
+          }
+        });
+        iterateDeletedStructs(transaction, stackItem.deletions, (struct) => {
+          if (struct instanceof Item && scope.some((type) => isParentOf(type, struct)) && !isDeleted(stackItem.insertions, struct.id)) {
+            itemsToRedo.add(struct);
+          }
+        });
+        itemsToRedo.forEach((struct) => {
+          performedChange = redoItem(transaction, struct, itemsToRedo, stackItem.insertions, undoManager.ignoreRemoteMapChanges, undoManager) !== null || performedChange;
+        });
+        for (let i = itemsToDelete.length - 1; i >= 0; i--) {
+          const item = itemsToDelete[i];
+          if (undoManager.deleteFilter(item)) {
+            item.delete(transaction);
+            performedChange = true;
+          }
+        }
+        result = performedChange ? stackItem : null;
+      }
+      transaction.changed.forEach((subProps, type) => {
+        if (subProps.has(null) && type._searchMarker) {
+          type._searchMarker.length = 0;
+        }
+      });
+      _tr = transaction;
+    }, undoManager);
+    if (result != null) {
+      const changedParentTypes = _tr.changedParentTypes;
+      undoManager.emit("stack-item-popped", [{ stackItem: result, type: eventType, changedParentTypes }, undoManager]);
+    }
+    return result;
+  };
+  var UndoManager = class extends Observable {
+    constructor(typeScope, {
+      captureTimeout = 500,
+      captureTransaction = (_tr) => true,
+      deleteFilter = () => true,
+      trackedOrigins = /* @__PURE__ */ new Set([null]),
+      ignoreRemoteMapChanges = false,
+      doc: doc2 = isArray(typeScope) ? typeScope[0].doc : typeScope.doc
+    } = {}) {
+      super();
+      this.scope = [];
+      this.addToScope(typeScope);
+      this.deleteFilter = deleteFilter;
+      trackedOrigins.add(this);
+      this.trackedOrigins = trackedOrigins;
+      this.captureTransaction = captureTransaction;
+      this.undoStack = [];
+      this.redoStack = [];
+      this.undoing = false;
+      this.redoing = false;
+      this.doc = doc2;
+      this.lastChange = 0;
+      this.ignoreRemoteMapChanges = ignoreRemoteMapChanges;
+      this.captureTimeout = captureTimeout;
+      this.afterTransactionHandler = (transaction) => {
+        if (!this.captureTransaction(transaction) || !this.scope.some((type) => transaction.changedParentTypes.has(type)) || !this.trackedOrigins.has(transaction.origin) && (!transaction.origin || !this.trackedOrigins.has(transaction.origin.constructor))) {
+          return;
+        }
+        const undoing = this.undoing;
+        const redoing = this.redoing;
+        const stack = undoing ? this.redoStack : this.undoStack;
+        if (undoing) {
+          this.stopCapturing();
+        } else if (!redoing) {
+          this.clear(false, true);
+        }
+        const insertions = new DeleteSet();
+        transaction.afterState.forEach((endClock, client) => {
+          const startClock = transaction.beforeState.get(client) || 0;
+          const len = endClock - startClock;
+          if (len > 0) {
+            addToDeleteSet(insertions, client, startClock, len);
+          }
+        });
+        const now = getUnixTime();
+        let didAdd = false;
+        if (this.lastChange > 0 && now - this.lastChange < this.captureTimeout && stack.length > 0 && !undoing && !redoing) {
+          const lastOp = stack[stack.length - 1];
+          lastOp.deletions = mergeDeleteSets([lastOp.deletions, transaction.deleteSet]);
+          lastOp.insertions = mergeDeleteSets([lastOp.insertions, insertions]);
+        } else {
+          stack.push(new StackItem(transaction.deleteSet, insertions));
+          didAdd = true;
+        }
+        if (!undoing && !redoing) {
+          this.lastChange = now;
+        }
+        iterateDeletedStructs(transaction, transaction.deleteSet, (item) => {
+          if (item instanceof Item && this.scope.some((type) => isParentOf(type, item))) {
+            keepItem(item, true);
+          }
+        });
+        const changeEvent = [{ stackItem: stack[stack.length - 1], origin: transaction.origin, type: undoing ? "redo" : "undo", changedParentTypes: transaction.changedParentTypes }, this];
+        if (didAdd) {
+          this.emit("stack-item-added", changeEvent);
+        } else {
+          this.emit("stack-item-updated", changeEvent);
+        }
+      };
+      this.doc.on("afterTransaction", this.afterTransactionHandler);
+      this.doc.on("destroy", () => {
+        this.destroy();
+      });
+    }
+    addToScope(ytypes) {
+      ytypes = isArray(ytypes) ? ytypes : [ytypes];
+      ytypes.forEach((ytype) => {
+        if (this.scope.every((yt) => yt !== ytype)) {
+          this.scope.push(ytype);
+        }
+      });
+    }
+    addTrackedOrigin(origin) {
+      this.trackedOrigins.add(origin);
+    }
+    removeTrackedOrigin(origin) {
+      this.trackedOrigins.delete(origin);
+    }
+    clear(clearUndoStack = true, clearRedoStack = true) {
+      if (clearUndoStack && this.canUndo() || clearRedoStack && this.canRedo()) {
+        this.doc.transact((tr) => {
+          if (clearUndoStack) {
+            this.undoStack.forEach((item) => clearUndoManagerStackItem(tr, this, item));
+            this.undoStack = [];
+          }
+          if (clearRedoStack) {
+            this.redoStack.forEach((item) => clearUndoManagerStackItem(tr, this, item));
+            this.redoStack = [];
+          }
+          this.emit("stack-cleared", [{ undoStackCleared: clearUndoStack, redoStackCleared: clearRedoStack }]);
+        });
+      }
+    }
+    stopCapturing() {
+      this.lastChange = 0;
+    }
+    undo() {
+      this.undoing = true;
+      let res;
+      try {
+        res = popStackItem(this, this.undoStack, "undo");
+      } finally {
+        this.undoing = false;
+      }
+      return res;
+    }
+    redo() {
+      this.redoing = true;
+      let res;
+      try {
+        res = popStackItem(this, this.redoStack, "redo");
+      } finally {
+        this.redoing = false;
+      }
+      return res;
+    }
+    canUndo() {
+      return this.undoStack.length > 0;
+    }
+    canRedo() {
+      return this.redoStack.length > 0;
+    }
+    destroy() {
+      this.trackedOrigins.delete(this);
+      this.doc.off("afterTransaction", this.afterTransactionHandler);
+      super.destroy();
+    }
+  };
   function* lazyStructReaderGenerator(decoder) {
     const numOfStateUpdates = readVarUint(decoder.restDecoder);
     for (let i = 0; i < numOfStateUpdates; i++) {
@@ -2265,6 +2945,31 @@ globalThis.y = (() => {
       } while (this.filterSkips && this.curr !== null && this.curr.constructor === Skip);
       return this.curr;
     }
+  };
+  var logUpdate = (update) => logUpdateV2(update, UpdateDecoderV1);
+  var logUpdateV2 = (update, YDecoder = UpdateDecoderV2) => {
+    const structs = [];
+    const updateDecoder = new YDecoder(createDecoder(update));
+    const lazyDecoder = new LazyStructReader(updateDecoder, false);
+    for (let curr = lazyDecoder.curr; curr !== null; curr = lazyDecoder.next()) {
+      structs.push(curr);
+    }
+    print("Structs: ", structs);
+    const ds = readDeleteSet(updateDecoder);
+    print("DeleteSet: ", ds);
+  };
+  var decodeUpdate = (update) => decodeUpdateV2(update, UpdateDecoderV1);
+  var decodeUpdateV2 = (update, YDecoder = UpdateDecoderV2) => {
+    const structs = [];
+    const updateDecoder = new YDecoder(createDecoder(update));
+    const lazyDecoder = new LazyStructReader(updateDecoder, false);
+    for (let curr = lazyDecoder.curr; curr !== null; curr = lazyDecoder.next()) {
+      structs.push(curr);
+    }
+    return {
+      structs,
+      ds: readDeleteSet(updateDecoder)
+    };
   };
   var LazyStructWriter = class {
     constructor(encoder) {
@@ -2319,6 +3024,28 @@ globalThis.y = (() => {
     }
   };
   var encodeStateVectorFromUpdate = (update) => encodeStateVectorFromUpdateV2(update, DSEncoderV1, UpdateDecoderV1);
+  var parseUpdateMetaV2 = (update, YDecoder = UpdateDecoderV2) => {
+    const from2 = /* @__PURE__ */ new Map();
+    const to = /* @__PURE__ */ new Map();
+    const updateDecoder = new LazyStructReader(new YDecoder(createDecoder(update)), false);
+    let curr = updateDecoder.curr;
+    if (curr !== null) {
+      let currClient = curr.id.client;
+      let currClock = curr.id.clock;
+      from2.set(currClient, currClock);
+      for (; curr !== null; curr = updateDecoder.next()) {
+        if (currClient !== curr.id.client) {
+          to.set(currClient, currClock);
+          from2.set(curr.id.client, curr.id.clock);
+          currClient = curr.id.client;
+        }
+        currClock = curr.id.clock + curr.length;
+      }
+      to.set(currClient, currClock);
+    }
+    return { from: from2, to };
+  };
+  var parseUpdateMeta = (update) => parseUpdateMetaV2(update, UpdateDecoderV1);
   var sliceStruct = (left, diff) => {
     if (left.constructor === GC) {
       const { client, clock } = left.id;
@@ -2494,6 +3221,7 @@ globalThis.y = (() => {
     writeDeleteSet(updateEncoder, ds);
     return updateEncoder.toUint8Array();
   };
+  var convertUpdateFormatV1ToV2 = (update) => convertUpdateFormat(update, UpdateDecoderV1, UpdateEncoderV2);
   var convertUpdateFormatV2ToV1 = (update) => convertUpdateFormat(update, UpdateDecoderV2, UpdateEncoderV1);
   var YEvent = class {
     constructor(target, transaction) {
@@ -2734,6 +3462,15 @@ globalThis.y = (() => {
       }
     }
   };
+  var getTypeChildren = (t) => {
+    let s = t._start;
+    const arr = [];
+    while (s) {
+      arr.push(s);
+      s = s.right;
+    }
+    return arr;
+  };
   var callTypeObservers = (type, transaction, event) => {
     const changedType = type;
     const changedParentTypes = transaction.changedParentTypes;
@@ -2831,6 +3568,20 @@ globalThis.y = (() => {
     let n = type._start;
     while (n !== null) {
       if (n.countable && !n.deleted) {
+        const c = n.content.getContent();
+        for (let i = 0; i < c.length; i++) {
+          cs.push(c[i]);
+        }
+      }
+      n = n.right;
+    }
+    return cs;
+  };
+  var typeListToArraySnapshot = (type, snapshot2) => {
+    const cs = [];
+    let n = type._start;
+    while (n !== null) {
+      if (n.countable && isVisible(n, snapshot2)) {
         const c = n.content.getContent();
         for (let i = 0; i < c.length; i++) {
           cs.push(c[i]);
@@ -3100,6 +3851,13 @@ globalThis.y = (() => {
   var typeMapHas = (parent, key) => {
     const val = parent._map.get(key);
     return val !== void 0 && !val.deleted;
+  };
+  var typeMapGetSnapshot = (parent, key, snapshot2) => {
+    let v = parent._map.get(key) || null;
+    while (v !== null && (!snapshot2.sv.has(v.id.client) || v.id.clock >= (snapshot2.sv.get(v.id.client) || 0))) {
+      v = v.left;
+    }
+    return v !== null && isVisible(v, snapshot2) ? v.content.getContent()[v.length - 1] : void 0;
   };
   var createMapIterator = (map2) => iteratorFilter(map2.entries(), (entry) => !entry[1].deleted);
   var YArrayEvent = class extends YEvent {
@@ -3907,7 +4665,7 @@ globalThis.y = (() => {
         this._pending.push(() => this.applyDelta(delta));
       }
     }
-    toDelta(snapshot, prevSnapshot, computeYChange) {
+    toDelta(snapshot2, prevSnapshot, computeYChange) {
       const ops = [];
       const currentAttributes = /* @__PURE__ */ new Map();
       const doc2 = this.doc;
@@ -3931,11 +4689,11 @@ globalThis.y = (() => {
       }
       const computeDelta = () => {
         while (n !== null) {
-          if (isVisible(n, snapshot) || prevSnapshot !== void 0 && isVisible(n, prevSnapshot)) {
+          if (isVisible(n, snapshot2) || prevSnapshot !== void 0 && isVisible(n, prevSnapshot)) {
             switch (n.content.constructor) {
               case ContentString: {
                 const cur = currentAttributes.get("ychange");
-                if (snapshot !== void 0 && !isVisible(n, snapshot)) {
+                if (snapshot2 !== void 0 && !isVisible(n, snapshot2)) {
                   if (cur === void 0 || cur.user !== n.id.client || cur.type !== "removed") {
                     packStr();
                     currentAttributes.set("ychange", computeYChange ? computeYChange("removed", n.id) : { type: "removed" });
@@ -3969,7 +4727,7 @@ globalThis.y = (() => {
                 break;
               }
               case ContentFormat:
-                if (isVisible(n, snapshot)) {
+                if (isVisible(n, snapshot2)) {
                   packStr();
                   updateCurrentAttributes(currentAttributes, n.content);
                 }
@@ -3980,10 +4738,10 @@ globalThis.y = (() => {
         }
         packStr();
       };
-      if (snapshot || prevSnapshot) {
+      if (snapshot2 || prevSnapshot) {
         transact(doc2, (transaction) => {
-          if (snapshot) {
-            splitSnapshotAffectedStructs(transaction, snapshot);
+          if (snapshot2) {
+            splitSnapshotAffectedStructs(transaction, snapshot2);
           }
           if (prevSnapshot) {
             splitSnapshotAffectedStructs(transaction, prevSnapshot);
@@ -4944,6 +5702,29 @@ globalThis.y = (() => {
     }
   };
   var readContentType = (decoder) => new ContentType(typeRefs[decoder.readTypeRef()](decoder));
+  var followRedone = (store, id) => {
+    let nextID = id;
+    let diff = 0;
+    let item;
+    do {
+      if (diff > 0) {
+        nextID = createID(nextID.client, nextID.clock + diff);
+      }
+      item = getItem(store, nextID);
+      diff = nextID.clock - item.id.clock;
+      nextID = item.redone;
+    } while (nextID !== null && item instanceof Item);
+    return {
+      item,
+      diff
+    };
+  };
+  var keepItem = (item, keep) => {
+    while (item !== null && item.keep !== keep) {
+      item.keep = keep;
+      item = item.parent._item;
+    }
+  };
   var splitItem = (transaction, leftItem, diff) => {
     const { client, clock } = leftItem.id;
     const rightItem = new Item(createID(client, clock + diff), leftItem, createID(client, clock + diff - 1), leftItem.right, leftItem.rightOrigin, leftItem.parent, leftItem.parentSub, leftItem.content.splice(diff));
@@ -4966,6 +5747,76 @@ globalThis.y = (() => {
     }
     leftItem.length = diff;
     return rightItem;
+  };
+  var isDeletedByUndoStack = (stack, id) => some(stack, (s) => isDeleted(s.deletions, id));
+  var redoItem = (transaction, item, redoitems, itemsToDelete, ignoreRemoteMapChanges, um) => {
+    const doc2 = transaction.doc;
+    const store = doc2.store;
+    const ownClientID = doc2.clientID;
+    const redone = item.redone;
+    if (redone !== null) {
+      return getItemCleanStart(transaction, redone);
+    }
+    let parentItem = item.parent._item;
+    let left = null;
+    let right;
+    if (parentItem !== null && parentItem.deleted === true) {
+      if (parentItem.redone === null && (!redoitems.has(parentItem) || redoItem(transaction, parentItem, redoitems, itemsToDelete, ignoreRemoteMapChanges, um) === null)) {
+        return null;
+      }
+      while (parentItem.redone !== null) {
+        parentItem = getItemCleanStart(transaction, parentItem.redone);
+      }
+    }
+    const parentType = parentItem === null ? item.parent : parentItem.content.type;
+    if (item.parentSub === null) {
+      left = item.left;
+      right = item;
+      while (left !== null) {
+        let leftTrace = left;
+        while (leftTrace !== null && leftTrace.parent._item !== parentItem) {
+          leftTrace = leftTrace.redone === null ? null : getItemCleanStart(transaction, leftTrace.redone);
+        }
+        if (leftTrace !== null && leftTrace.parent._item === parentItem) {
+          left = leftTrace;
+          break;
+        }
+        left = left.left;
+      }
+      while (right !== null) {
+        let rightTrace = right;
+        while (rightTrace !== null && rightTrace.parent._item !== parentItem) {
+          rightTrace = rightTrace.redone === null ? null : getItemCleanStart(transaction, rightTrace.redone);
+        }
+        if (rightTrace !== null && rightTrace.parent._item === parentItem) {
+          right = rightTrace;
+          break;
+        }
+        right = right.right;
+      }
+    } else {
+      right = null;
+      if (item.right && !ignoreRemoteMapChanges) {
+        left = item;
+        while (left !== null && left.right !== null && (left.right.redone || isDeleted(itemsToDelete, left.right.id) || isDeletedByUndoStack(um.undoStack, left.right.id) || isDeletedByUndoStack(um.redoStack, left.right.id))) {
+          left = left.right;
+          while (left.redone)
+            left = getItemCleanStart(transaction, left.redone);
+        }
+        if (left && left.right !== null) {
+          return null;
+        }
+      } else {
+        left = parentType._map.get(item.parentSub) || null;
+      }
+    }
+    const nextClock = getState(store, ownClientID);
+    const nextId = createID(ownClientID, nextClock);
+    const redoneItem = new Item(nextId, left, left && left.lastId, right, right && right.id, parentType, item.parentSub, item.content.copy());
+    item.redone = nextId;
+    keepItem(redoneItem, true);
+    redoneItem.integrate(transaction, 0);
+    return redoneItem;
   };
   var Item = class extends AbstractStruct {
     constructor(id, left, origin, right, rightOrigin, parent, parentSub, content) {
@@ -5290,19 +6141,20 @@ globalThis.y = (() => {
   glo[importIdentifier] = true;
 
   // src/index.ts
+  globalThis.yjs = yjs_exports;
   function new_doc() {
     console.log("y_new_doc");
     const doc2 = new Doc();
     return encodeStateAsUpdate(doc2);
   }
-  function apply_update(savedDoc, update) {
+  function apply_update(bytes, update) {
     console.log("y_apply_update");
-    return mergeUpdates([savedDoc, update]);
+    return mergeUpdates([bytes, update]);
   }
-  function apply_update_gc(savedDoc, update) {
+  function apply_update_gc(bytes, update) {
     console.log("y_apply_update_gc");
     const doc2 = new Doc();
-    applyUpdate(doc2, savedDoc);
+    applyUpdate(doc2, bytes);
     applyUpdate(doc2, update);
     return encodeStateAsUpdate(doc2);
   }
@@ -5310,36 +6162,36 @@ globalThis.y = (() => {
     console.log("y_merge_updates");
     return mergeUpdates(updates);
   }
-  function diff_update(savedDoc, stateVector) {
+  function diff_update(bytes, stateVector) {
     console.log("y_diff_update");
-    return diffUpdate(savedDoc, stateVector);
+    return diffUpdate(bytes, stateVector);
   }
-  function encode_state_vector(savedDoc) {
+  function encode_state_vector(bytes) {
     console.log("y_encode_state_vector");
-    return encodeStateVectorFromUpdate(savedDoc);
+    return encodeStateVectorFromUpdate(bytes);
   }
-  function get_map_json(savedDoc, key) {
+  function get_map_json(bytes, key) {
     console.log("y_get_map_json");
     const doc2 = new Doc();
-    applyUpdate(doc2, savedDoc);
+    applyUpdate(doc2, bytes);
     return doc2.getMap(key).toJSON();
   }
-  function get_array_json(savedDoc, key) {
+  function get_array_json(bytes, key) {
     console.log("y_get_array_json");
     const doc2 = new Doc();
-    applyUpdate(doc2, savedDoc);
+    applyUpdate(doc2, bytes);
     return doc2.getArray(key).toJSON();
   }
-  function get_xml_fragment_json(savedDoc, key) {
+  function get_xml_fragment_json(bytes, key) {
     console.log("y_get_xml_fragment_json");
     const doc2 = new Doc();
-    applyUpdate(doc2, savedDoc);
+    applyUpdate(doc2, bytes);
     return doc2.getXmlFragment(key).toJSON();
   }
-  function extract_xml_fragment_text(savedDoc, key) {
+  function extract_xml_fragment_text(bytes, key) {
     console.log("y_extract_xml_fragment_text");
     const doc2 = new Doc();
-    applyUpdate(doc2, savedDoc);
+    applyUpdate(doc2, bytes);
     const xml = doc2.getXmlFragment(key);
     return "";
   }
