@@ -1,0 +1,6 @@
+
+DROP TABLE IF EXISTS docs;
+CREATE TABLE IF NOT EXISTS docs (id INTEGER PRIMARY KEY, doc BLOB);
+
+INSERT INTO docs (id, doc) VALUES (1, y_new_doc());
+

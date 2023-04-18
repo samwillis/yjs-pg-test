@@ -1,0 +1,21 @@
+{
+  "name": "yjs-plv8-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:plv8ify": "rm -rf ./build && plv8ify generate --input-file ./src/index.ts --mode bundle --scope-prefix y --output-folder build",
+    "build:concat": "for f in ./build/*.sql; do (cat \"${f}\"; echo) >> ./dist/pg_yjs.sql; done",
+    "build": "rm -rf ./dist && mkdir dist && npm run build:plv8ify && npm run build:concat"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.0.4",
+    "yjs": "^13.5.52"
+  },
+  "devDependencies": {
+    "plv8ify": "github:samwillis/plv8ify#types"
+  }
+}
